@@ -4,6 +4,7 @@ import 'package:english_words/english_words.dart';
 
 import 'BothDirectionTestRoute.dart';
 import 'ConstrainedBoxTest.dart';
+import 'CustomPaintRoute.dart';
 import 'FocusTestRoute.dart';
 import 'ScaffoldRoute.dart';
 import 'ScaleAnimationRoute.dart';

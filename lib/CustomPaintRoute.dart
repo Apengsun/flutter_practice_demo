@@ -4,12 +4,13 @@ import 'dart:math';
 class CustomPaintRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Material(
+        child: Center(
       child: CustomPaint(
         size: Size(300, 300), //指定画布大小
         painter: MyPainter(),
       ),
-    );
+    ));
   }
 }
 
