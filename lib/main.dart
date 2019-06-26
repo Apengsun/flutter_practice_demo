@@ -6,12 +6,14 @@ import 'BothDirectionTestRoute.dart';
 import 'ConstrainedBoxTest.dart';
 import 'CustomPaintRoute.dart';
 import 'FocusTestRoute.dart';
+import 'GradientCircularProgressRoute.dart';
 import 'ScaffoldRoute.dart';
 import 'ScaleAnimationRoute.dart';
 import 'SingleChildScrollViewTestRoute.dart';
 import 'CustomScrollViewTestRoute.dart';
 import 'StaggerDemo.dart';
 import 'ThemeTestRoute.dart';
+import 'TurnBoxRoute.dart';
 
 void main() => runApp(MyApp());
 
@@ -51,7 +53,9 @@ class MyApp extends StatelessWidget {
         "BothDirectionTestRoute": (context) => BothDirectionTestRoute(),
         "ScaleAnimationRoute": (context) => ScaleAnimationRoute(),
         "StaggerDemo": (context) => StaggerDemo(),
+        "TurnBoxRoute": (context) => TurnBoxRoute(),
         "CustomPaintRoute": (context) => CustomPaintRoute(),
+        "GradientCircularProgressRoute": (context) =>  GradientCircularProgressRoute(),
       },
     );
   }
@@ -77,6 +81,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  bool _switchSelected=true; //维护单选开关状态
+  bool _checkboxSelected=true;//维护复选框状态
 
   //定义一个controller
   TextEditingController _unameController = new TextEditingController();
@@ -248,10 +254,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Animation animation,
                                 Animation secondaryAnimation) {
                               return new FadeTransition(
-                                  //使用渐隐渐入过渡,
-                                  opacity: animation,
-                                  child: CustomScrollViewTestRoute(), //路由B
-                                  );
+                                //使用渐隐渐入过渡,
+                                opacity: animation,
+                                child: CustomScrollViewTestRoute(), //路由B
+                              );
                             }));
                   },
                 ),
@@ -269,107 +275,121 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.of(context).pushNamed("CustomPaintRoute");
                   },
                 ),
+                RaisedButton(
+                  child: Text("TurnBoxRoute"),
+                  textColor: Colors.blue,
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("TurnBoxRoute");
+                  },
+                ),
+                RaisedButton(
+                  child: Text("GradientCircularProgressRoute"),
+                  textColor: Colors.blue,
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("GradientCircularProgressRoute");
+                  },
+                ),
                 WillPopScopeTestRoute(),
-//      ListView.builder(
-//        itemCount: 100,
-//        itemExtent: 50.0,
-//        //强制高度为50.0
-//        itemBuilder: (BuildContext context, int index) {
-//          return ListTile(title: Text("$index"));
-//        },
-//          Column(
-//              children: <Widget>[
-//                Switch(
-//                  value: _switchSelected, //当前状态
-//                  onChanged: (value) {
-//                    //重新构建页面
-//                    setState(() {
-//                      _switchSelected = value;
-//                    });
-//                  },
-//                ),
-//                Checkbox(
-//                  value: _checkboxSelected,
-//                  activeColor: Colors.red, //选中时的颜色
-//                  onChanged: (value) {
-//                    setState(() {
-//                      _checkboxSelected = value;
-//                    });
-//                  },
-//                )
-//              ],
-//            ),
-//            Row(
-//              mainAxisAlignment: MainAxisAlignment.center,
-//              children: <Widget>[
-//                Icon(
-//                  Icons.book,
-//                  color: Colors.purple,
-//                ),
-//                Icon(
-//                  Icons.backspace,
-//                  color: Colors.green,
-//                ),
-//              ],
-//            ),
-//            Icon(
-//              Icons.accessible,
-//              color: Colors.amber,
-//            ),
-//            Icon(
-//              Icons.error,
-//              color: Colors.deepOrange,
-//            ),
-//            Icon(
-//              Icons.fingerprint,
-//              color: Colors.tealAccent,
-//            ),
-//            Text(
-//              "\uE914" + " \uE000" + " \uE90D",
-//              style: TextStyle(
-//                  fontFamily: "MaterialIcons",
-//                  fontSize: 24.0,
-//                  color: Colors.green),
-//            ),
-//            Image.network(
-//              "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
-//              width: 100.0,
-//            ),
-//            Image(
-//              image: NetworkImage(
-//                  "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4"),
-//              width: 100.0,
-//              color: Colors.pink,
-//              colorBlendMode: BlendMode.difference,
-//            ),
-//            Text(
-//              'You have pushed the button this many times:',
-////              style: Theme.of(context).textTheme.body1,
-////              'You have clicked the button this many times:',
-//            ),
-//            Text(
-//              '$_counter',
-//              style: Theme.of(context).textTheme.display1,
-//            ),
-//            FlatButton(
-//              child: Text("open new route"),
-//              textColor: Colors.blue,
-//              onPressed: () {
-////                //导航到新路由
-////                Navigator.push( context,
-////                    new MaterialPageRoute(builder: (context) {
-////                      return new NewRoute();
-////                    },settings: RouteSettings(),maintainState: false,fullscreenDialog: true));
-//                //通过路由名打开新的路由页
-////                Navigator.pushNamed(context, "new_page");
-////                Navigator.of(context).pushNamed("new_page_2", arguments: "hi");
-////                Navigator.of(context).pushNamed("new_page_3");
+//          ListView.builder(
+//              itemCount: 100,
+//              itemExtent: 50.0, //强制高度为50.0
+//              itemBuilder: (BuildContext context, int index) {
+//                return ListTile(title: Text("$index"));
+//              }
+//          ),
+          Column(
+              children: <Widget>[
+                Switch(
+                  value: _switchSelected, //当前状态
+                  onChanged: (value) {
+                    //重新构建页面
+                    setState(() {
+                      _switchSelected = value;
+                    });
+                  },
+                ),
+                Checkbox(
+                  value: _checkboxSelected,
+                  activeColor: Colors.red, //选中时的颜色
+                  onChanged: (value) {
+                    setState(() {
+                      _checkboxSelected = value;
+                    });
+                  },
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(
+                  Icons.book,
+                  color: Colors.purple,
+                ),
+                Icon(
+                  Icons.backspace,
+                  color: Colors.green,
+                ),
+              ],
+            ),
+            Icon(
+              Icons.accessible,
+              color: Colors.amber,
+            ),
+            Icon(
+              Icons.error,
+              color: Colors.deepOrange,
+            ),
+            Icon(
+              Icons.fingerprint,
+              color: Colors.tealAccent,
+            ),
+            Text(
+              "\uE914" + " \uE000" + " \uE90D",
+              style: TextStyle(
+                  fontFamily: "MaterialIcons",
+                  fontSize: 24.0,
+                  color: Colors.green),
+            ),
+            Image.network(
+              "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
+              width: 100.0,
+            ),
+            Image(
+              image: NetworkImage(
+                  "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4"),
+              width: 100.0,
+              color: Colors.pink,
+              colorBlendMode: BlendMode.difference,
+            ),
+            Text(
+              'You have pushed the button this many times:',
+//              style: Theme.of(context).textTheme.body1,
+//              'You have clicked the button this many times:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.display1,
+            ),
+                FlatButton(
+                  child: Text("open new route"),
+                  textColor: Colors.blue,
+                  onPressed: () {
+//                //导航到新路由
+//                Navigator.push( context,
+//                    new MaterialPageRoute(builder: (context) {
+//                      return new NewRoute();
+//                    },settings: RouteSettings(),maintainState: false,fullscreenDialog: true));
+                    //通过路由名打开新的路由页
+                    Navigator.pushNamed(context, "new_page");
+//                Navigator.of(context).pushNamed("new_page_2", arguments: "hi");
+//                Navigator.of(context).pushNamed("new_page_3");
 //                Navigator.of(context).pushNamed("new_page_4");
-////                debugDumpApp();
-//              },
-//            ),
-//            RandomWordsWidget(),
-//            Echo(text: "hello world"),
+//                debugDumpApp();
+                  },
+                ),
+                RandomWordsWidget(),
+                Echo(text: "hello world"),
               ],
             ),
           ),
@@ -480,8 +500,8 @@ class _CounterWidgetState extends State<CounterWidget> {
           child: Text('$_counter'),
           //点击后计数器自增
           onPressed: () => setState(
-                () => ++_counter,
-              ),
+            () => ++_counter,
+          ),
         ),
       ),
     );
