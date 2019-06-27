@@ -5,6 +5,7 @@ import 'package:english_words/english_words.dart';
 import 'BothDirectionTestRoute.dart';
 import 'ConstrainedBoxTest.dart';
 import 'CustomPaintRoute.dart';
+import 'FileOperationRoute.dart';
 import 'FocusTestRoute.dart';
 import 'GradientCircularProgressRoute.dart';
 import 'ScaffoldRoute.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
         "TurnBoxRoute": (context) => TurnBoxRoute(),
         "CustomPaintRoute": (context) => CustomPaintRoute(),
         "GradientCircularProgressRoute": (context) =>  GradientCircularProgressRoute(),
+        "FileOperationRoute": (context) =>  FileOperationRoute(),
       },
     );
   }
@@ -287,6 +289,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   textColor: Colors.blue,
                   onPressed: () {
                     Navigator.of(context).pushNamed("GradientCircularProgressRoute");
+                  },
+                ),
+                RaisedButton(
+                  child: Text("FileOperationRoute"),
+                  textColor: Colors.blue,
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("FileOperationRoute");
                   },
                 ),
                 WillPopScopeTestRoute(),
