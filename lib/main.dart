@@ -8,6 +8,7 @@ import 'CustomPaintRoute.dart';
 import 'FileOperationRoute.dart';
 import 'FocusTestRoute.dart';
 import 'GradientCircularProgressRoute.dart';
+import 'HttpTestRoute.dart';
 import 'ScaffoldRoute.dart';
 import 'ScaleAnimationRoute.dart';
 import 'SingleChildScrollViewTestRoute.dart';
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
         "CustomPaintRoute": (context) => CustomPaintRoute(),
         "GradientCircularProgressRoute": (context) =>  GradientCircularProgressRoute(),
         "FileOperationRoute": (context) =>  FileOperationRoute(),
+        "HttpTestRoute": (context) =>  HttpTestRoute(),
       },
     );
   }
@@ -296,6 +298,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   textColor: Colors.blue,
                   onPressed: () {
                     Navigator.of(context).pushNamed("FileOperationRoute");
+                  },
+                ),
+                RaisedButton(
+                  child: Text("HttpTestRoute "),
+                  textColor: Colors.blue,
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("HttpTestRoute");
                   },
                 ),
                 WillPopScopeTestRoute(),
